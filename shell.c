@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv)
 {
@@ -34,7 +35,7 @@ char *shell_readline(void)
     if (!buffer)
     {
         fprintf(stderr, "Buffer allocation failed");
-        EXIT();
+        exit(EXIT_SUCCESS);
     }
 
     while (1)
@@ -59,7 +60,7 @@ char *shell_readline(void)
             if (!buffer)
             {
                 fprintf(stderr, "Buffer allocation failed");
-                EXIT();
+                exit(EXIT_SUCCESS);
             }
         }
     }
