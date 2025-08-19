@@ -1,1 +1,2 @@
 # shell
+The purpose of this project is to implement a Shell application. The main goal is to have a better understanding of Operating System Fundamentals. The application is written in C and would later be ported to C++.
