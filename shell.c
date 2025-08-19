@@ -87,7 +87,7 @@ char **shell_splitline(char **line)
 
         if (position >= bufferSize)
         {
-            tokens += bufferSize;
+            bufferSize += bufferSize;
             realloc(tokens, bufferSize * sizeof(char *));
 
             if (!tokens)
