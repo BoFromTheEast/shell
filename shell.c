@@ -69,7 +69,7 @@ char *shell_readline(void)
 char **shell_splitline(char **line)
 {
     int bufferSize = 64, position = 0;
-    char **tokens = malloc(sizeof(char *) * bufferSize);
+    char **tokens = malloc(sizeof(char*) * bufferSize);
     char *token;
 
     if (!tokens)
@@ -88,7 +88,7 @@ char **shell_splitline(char **line)
         if (position >= bufferSize)
         {
             bufferSize += bufferSize;
-            realloc(tokens, bufferSize * sizeof(char *));
+            tokens = realloc(tokens, bufferSize * sizeof(char *));
 
             if (!tokens)
             {
