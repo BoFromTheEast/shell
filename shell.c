@@ -35,7 +35,7 @@ char *shell_readline(void)
     if (!buffer)
     {
         fprintf(stderr, "Buffer allocation failed");
-        exit(EXIT_SUCCESS);
+        exit(EXIT_FAILURE);
     }
 
     while (1)
@@ -60,7 +60,7 @@ char *shell_readline(void)
             if (!buffer)
             {
                 fprintf(stderr, "Buffer allocation failed");
-                exit(EXIT_SUCCESS);
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -68,6 +68,38 @@ char *shell_readline(void)
 
 char **shell_splitline(char **line)
 {
+    int bufferSize = 64, position = 0;
+    char **tokens = malloc(sizeof(char *) * bufferSize);
+    char *token;
+
+    if (!tokens)
+    {
+        fprintf(stderr, "Allocation error");
+        exit(EXIT_FAILURE);
+    }
+
+    token = strtok(line, " \t\r\n\a");
+
+    while (token != NULL)
+    {
+        tokens[position] = token;
+        position++;
+
+        if (position >= bufferSize)
+        {
+            tokens += bufferSize;
+            realloc(tokens, bufferSize * sizeof(char *));
+
+            if (!tokens)
+            {
+                fprintf(stderr, "Allocation error");
+                exit(EXIT_FAILURE);
+            }
+        }
+        token = strtok(NULL, " \t\r\n\a");
+    }
+    tokens[position] = NULL;
+    return tokens;
 }
 
 int shell_execute(char ***args)
