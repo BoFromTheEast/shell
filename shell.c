@@ -3,24 +3,23 @@
 
 int main(int argc, char *argv)
 {
-
-    shellLoop();
+    shellLoop(); // SHELL Application
 }
 
 void shellLoop(void)
 {
-    char *line;
-    char **args;
+    char *line; // pointer to line
+    char **args; // pointer to arg
     int loopStatus;
 
     do
     {
         printf("> ");
-        line = shell_readline();
-        args = shell_splitline(line);
-        loopStatus = shell_execute(args);
+        line = shell_readline(); // read the cmd line
+        args = shell_splitline(line); // tokenize the args
+        loopStatus = shell_execute(args); // execute the arguments
 
-        free(line);
+        free(line); // free the pointers r
         free(args);
     } while (loopStatus);
 }
