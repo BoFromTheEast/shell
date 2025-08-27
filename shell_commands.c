@@ -18,3 +18,7 @@ int (*builtin_function[])(char **) = {
     &shell_help,
     &shell_exit
 };
+
+int shell_cmd_num(){
+    return sizeof(builtin_str) / sizeof(char *);
+};
