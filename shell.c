@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
+#include "shell_commands.c"
 
 int main(int argc, char *argv)
 {
@@ -12,15 +12,15 @@ int main(int argc, char *argv)
 
 void shellLoop(void)
 {
-    char *line; // pointer to line
+    char *line;  // pointer to line
     char **args; // pointer to arg
     int loopStatus;
 
     do
     {
         printf("> ");
-        line = shell_readline(); // read the cmd line
-        args = shell_splitline(line); // tokenize the args
+        line = shell_readline();          // read the cmd line
+        args = shell_splitline(line);     // tokenize the args
         loopStatus = shell_execute(args); // execute the arguments
 
         free(line); // free the pointers r
@@ -72,7 +72,7 @@ char *shell_readline(void)
 char **shell_splitline(char **line)
 {
     int bufferSize = 64, position = 0;
-    char **tokens = malloc(sizeof(char*) * bufferSize);
+    char **tokens = malloc(sizeof(char *) * bufferSize);
     char *token;
 
     if (!tokens)
@@ -105,6 +105,6 @@ char **shell_splitline(char **line)
     return tokens;
 }
 
-int shell_execute(char ***args)
+int shell_execute(char **args)
 {
 }
